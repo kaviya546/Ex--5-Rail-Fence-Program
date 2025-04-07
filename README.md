@@ -19,7 +19,49 @@ STEP-4: Arrange the characters of the keyword in sorted order and the correspond
 STEP-5: Read the characters row wise or column wise in the former order to get the cipher text.
 
 # PROGRAM
+```
+
+#include <stdio.h>
+#include <string.h>
+int main() {
+    int i, j, len, rails, count, dir;
+    char str[1000];
+    int code[100][1000] = {0};  // Initialize the entire array to 0
+    printf("Enter a Secret Message:\n");
+    scanf("%s",str);
+    len = strlen(str);
+    printf("Enter number of rails:\n");
+    scanf("%d", &rails);
+    count = 0;
+    i = 0;
+    dir = 1;  
+    for (j = 0; j < len; j++) {
+        code[i][j] = str[j];
+        // Change direction if we reach the top or bottom rail
+        if (i == 0) {
+            dir = 1;
+        } else if (i == rails - 1) {
+            dir = -1;
+        }
+        i += dir;
+    }
+    printf("Encrypted Message:\n");
+    // Print the encrypted message
+    for (i = 0; i < rails; i++) {
+        for (j = 0; j < len; j++) {
+            if (code[i][j] != 0) {
+                printf("%c", code[i][j]);
+            }
+        }
+    }
+    printf("\n");
+    return 0;
+}
+```
 
 # OUTPUT
+![image](https://github.com/user-attachments/assets/32b98d09-850f-48f5-bba8-d9bad23a9af9)
+
 
 # RESULT
+The program executed successfully.
